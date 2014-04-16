@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Laravel4-starter : Starter site to get you up and running with Laravel 4 and Bootstrap 3 with built-in authentication and user admin" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Laravel4-starter</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/snipe/laravel4-starter">View on GitHub</a>
+
+          <h1 id="project_title">Laravel4-starter</h1>
+          <h2 id="project_tagline">Starter site to get you up and running with Laravel 4 and Bootstrap 3 with built-in authentication and user admin</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/snipe/laravel4-starter/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/snipe/laravel4-starter/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>
+<a name="laravel-4-bootstrap-starter-site" class="anchor" href="#laravel-4-bootstrap-starter-site"><span class="octicon octicon-link"></span></a>Laravel 4 Bootstrap Starter Site</h2>
+
+<p><a href="https://travis-ci.org/snipe/laravel4-starter"><img src="https://travis-ci.org/snipe/laravel4-starter.svg?branch=master" alt="Build Status"></a></p>
+
+<p>This is a Laravel 4 Starter Site and it will help you getting started with Laravel 4.
+It's based off the great <a href="https://github.com/brunogaspar/laravel4-starter-kit">Laravel Starter Kit</a>
+from <a href="https://github.com/brunogaspar">brunogaspar</a>, with some additional refinements,
+bugfixes and a cleaner, more modern UX.</p>
+
+<p>It includes examples on how to use the framework itself and how to use some
+packages, like the awesome <a href="https://github.com/cartalyst/sentry">Sentry 2</a> package.</p>
+
+<hr><h2>
+<a name="included-goodies" class="anchor" href="#included-goodies"><span class="octicon octicon-link"></span></a>Included goodies</h2>
+
+<ul>
+<li>Twitter Bootstrap 3.1.1</li>
+<li>jQuery 1.10.2</li>
+<li>Custom CLI Installer</li>
+<li>Translation-ready with internationalization files</li>
+<li>Custom Error Pages:
+
+<ul>
+<li>403 for forbidden page access</li>
+<li>404 for not found pages</li>
+<li>500 for internal server errors</li>
+<li>503 for the maintenance page</li>
+</ul>
+</li>
+<li>Back-end
+
+<ul>
+<li>User and Group management</li>
+<li>Manage blog posts and comments</li>
+<li>Login brute-force prevention via <a href="https://github.com/cartalyst/sentry">Sentry 2</a> - default lockout is 5 failed login attempts</li>
+</ul>
+</li>
+<li>Front-end
+
+<ul>
+<li>User login, registration, activation and forgot password</li>
+<li>User account area</li>
+<li>Blog functionality with comments</li>
+<li>Contact us page</li>
+</ul>
+</li>
+<li>Packages included:
+
+<ul>
+<li><a href="https://github.com/cartalyst/sentry">Cartalyst Sentry 2 - Authentication and Authorization package</a></li>
+</ul>
+</li>
+</ul><hr><h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li>PHP 5.3.7 or later</li>
+<li>MCrypt PHP Extension</li>
+</ul><hr><h2>
+<a name="how-to-install" class="anchor" href="#how-to-install"><span class="octicon octicon-link"></span></a>How to Install</h2>
+
+<h3>
+<a name="1-downloading" class="anchor" href="#1-downloading"><span class="octicon octicon-link"></span></a>1) Downloading</h3>
+
+<h4>
+<a name="11-clone-the-repository" class="anchor" href="#11-clone-the-repository"><span class="octicon octicon-link"></span></a>1.1) Clone the Repository</h4>
+
+<pre><code>git clone https://github.com/snipe/laravel4-starter your-folder
+</code></pre>
+
+<h4>
+<a name="12-download-the-repository" class="anchor" href="#12-download-the-repository"><span class="octicon octicon-link"></span></a>1.2) Download the Repository</h4>
+
+<pre><code>https://github.com/snipe/laravel4-starter/archive/master.zip
+</code></pre>
+
+<hr><h3>
+<a name="2-install-the-dependencies-via-composer" class="anchor" href="#2-install-the-dependencies-via-composer"><span class="octicon octicon-link"></span></a>2) Install the Dependencies via Composer</h3>
+
+<h5>
+<a name="21-if-you-dont-have-composer-installed-globally" class="anchor" href="#21-if-you-dont-have-composer-installed-globally"><span class="octicon octicon-link"></span></a>2.1) If you don't have composer installed globally</h5>
+
+<pre><code>cd your-folder
+curl -s http://getcomposer.org/installer | php
+php composer.phar install
+</code></pre>
+
+<h5>
+<a name="22-for-globally-composer-installations" class="anchor" href="#22-for-globally-composer-installations"><span class="octicon octicon-link"></span></a>2.2) For globally composer installations</h5>
+
+<pre><code>cd your-folder
+composer install
+</code></pre>
+
+<hr><h3>
+<a name="3-setup-database" class="anchor" href="#3-setup-database"><span class="octicon octicon-link"></span></a>3) Setup Database</h3>
+
+<p>Now that you have the Starter Kit cloned and all the dependencies installed, you need to create a database and update the file <code>app/config/database.php</code>.</p>
+
+<hr><h3>
+<a name="4-setup-mail-settings" class="anchor" href="#4-setup-mail-settings"><span class="octicon octicon-link"></span></a>4) Setup Mail Settings</h3>
+
+<p>Setup your mail settings by  opening and updating <code>app/config/mail.php</code>.</p>
+
+<p>This will be used to send emails to your users, when they register and they request a password reset.</p>
+
+<p>While testing locally, you can set <code>'pretend' =&gt; true,</code> in <code>app/config/mail.php</code> to simulate email being sent.</p>
+
+<hr><h3>
+<a name="5-use-custom-cli-installer-command" class="anchor" href="#5-use-custom-cli-installer-command"><span class="octicon octicon-link"></span></a>5) Use custom CLI Installer Command</h3>
+
+<p>Now, you need to create yourself a user and finish the installation.</p>
+
+<p>Use the following command to create your default user, user groups and run all the necessary migrations automatically.</p>
+
+<pre><code>php artisan app:install
+</code></pre>
+
+<p>(Note that <a href="https://github.com/snipe/laravel4-starter/blob/master/.travis.yml">the Travis CI file</a> skips this step and instead calls the individual setup methods and just inserts the example user, since <a href="https://travis-ci.org/snipe/laravel4-starter.svg?branch=master">the CI build</a> isn't interactive.)</p>
+
+<hr><h3>
+<a name="6-accessing-the-administration" class="anchor" href="#6-accessing-the-administration"><span class="octicon octicon-link"></span></a>6) Accessing the Administration</h3>
+
+<p>To access the administration page, you just need to access <code>http://your-host/admin</code> in your browser and it
+will redirect you to the login page.</p>
+
+<p>After being authenticated, you will be redirected back to the administration page.</p>
+
+<hr><h3>
+<a name="7-brute-force-lockout-settings" class="anchor" href="#7-brute-force-lockout-settings"><span class="octicon octicon-link"></span></a>7) Brute-force Lockout Settings</h3>
+
+<p>The default Sentry setting is to lockout the user for 15 minutes after 5 failed login attempts. To
+change these settings, edit your <code>/vendor/cartalyst/sentry/src/config/config.php</code> file locally.</p>
+
+<hr><h3>
+<a name="8-contact" class="anchor" href="#8-contact"><span class="octicon octicon-link"></span></a>8) Contact</h3>
+
+<p>If you have questions about this project, you can reach me at <a href="mailto:snipe@snipe.net">snipe@snipe.net</a>, or on Twitter at <a href="https://twitter.com/snipeyhead">@snipeyhead</a>.</p>
+
+<hr><h3>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>LICENSE</h3>
+
+<blockquote>
+<p>Version 1, December 2009</p>
+
+<p>Copyright (C) 2009 Philip Sturgeon <a href="mailto:email@philsturgeon.co.uk">email@philsturgeon.co.uk</a></p>
+</blockquote>
+
+<p>Everyone is permitted to copy and distribute verbatim or modified
+ copies of this license document, and changing it is allowed as long
+ as the name is changed.</p>
+
+<blockquote>
+<p>DON'T BE A DICK PUBLIC LICENSE
+TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION</p>
+</blockquote>
+
+<ol>
+<li>
+<p>Do whatever you like with the original work, just don't be a dick.</p>
+
+<p>Being a dick includes - but is not limited to - the following instances:</p>
+
+<p>1a. Outright copyright infringement - Don't just copy this and change the name.
+ 1b. Selling the unmodified original with no work done what-so-ever, that's REALLY being a dick.
+ 1c. Modifying the original work to contain hidden harmful content. That would make you a PROPER dick.</p>
+</li>
+<li><p>If you become rich through modifications, related works/services, or supporting the original work,
+share the love. Only a dick would make loads off this work and not buy the original works
+creator(s) a pint.</p></li>
+<li><p>Code is provided with no warranty. Using somebody else's code and bitching when it goes wrong makes
+you a DONKEY dick. Fix the problem yourself. A non-dick would submit the fix back.</p></li>
+</ol>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Laravel4-starter maintained by <a href="https://github.com/snipe">snipe</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
