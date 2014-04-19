@@ -11,6 +11,7 @@ This is the summary of my book.
     * [Installer](installation/cli.md)
     * [Logging In](installation/loggingin.md)
 * [Usage](usage/authgroups.md)
+	* [Translations](usage/translations.md)
 * [Contact](contact.md)
 * [Contributing](contributing.md)
 * [License](license.md)
