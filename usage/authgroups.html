@@ -36,7 +36,7 @@
     </head>
     <body>
         
-    <div class="book"  data-level="4" data-basepath=".." data-revision="1397936001232">
+    <div class="book"  data-level="4" data-basepath=".." data-revision="1397939547028">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -242,7 +242,7 @@
 ));
 </code></pre><p>In Sentry, things like <code>posts.write</code> and <code>posts.read</code> are completely arbitrary.</p>
 <p>The developer decides what to call these access masks, and then through the code determines what a user can or cannot access. I mention this because the documentation for this particular feature was, at the time of this writing, somewhat lackluster, and it took a bit of searching to figure out how to use it.</p>
-<p>So for our purposes, we started with <code>admin</code>, <code>posts.write</code>, and <code>posts.read</code> because they are relevant to the sample blog application we&#39;re using in this project, but if you were creating an image gallery, forum, or anything else, you&#39;d want tofigure out what those access masks look like.</p>
+<p>So for our purposes, we started with <code>admin</code>, <code>posts.write</code>, and <code>posts.read</code> because they are relevant to the sample blog application we&#39;re using in this project, but if you were creating an image gallery, forum, or anything else, you&#39;d want to figure out what those access masks look like.</p>
 <h2 id="using-access-groups">Using access groups</h2>
 <p>Access permissions in Sentry are stored as a JSON string with the group info. As you&#39;re developing your software, these Sentry methods will come in handy:</p>
 <p>To <strong>create new access groups</strong>, in this example called <code>Super Administrators</code> and <code>Managers</code>:</p>
