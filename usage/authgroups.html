@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Logging In | Documentation for Laravel 4 Bootstrap 3 Starter Site</title>
+        <title>Usage | Documentation for Laravel 4 Bootstrap 3 Starter Site</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="../usage/authgroups.html" />
+        <link rel="next" href="../contact.html" />
         
         
-        <link rel="prev" href="../installation/cli.html" />
+        <link rel="prev" href="../installation/loggingin.html" />
         
 
-        <meta property="og:title" content="Logging In | Documentation for Laravel 4 Bootstrap 3 Starter Site">
+        <meta property="og:title" content="Usage | Documentation for Laravel 4 Bootstrap 3 Starter Site">
         <meta property="og:site_name" content="Documentation for Laravel 4 Bootstrap 3 Starter Site">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -36,7 +36,7 @@
     </head>
     <body>
         
-    <div class="book"  data-level="3.5" data-basepath=".." data-revision="1397934239862">
+    <div class="book"  data-level="4" data-basepath=".." data-revision="1397934239862">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -179,7 +179,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 66.66666666666667%;min-width: 58.333333333333336%;"></div>
+        <div class="inner" style="width: 75%;min-width: 66.66666666666667%;"></div>
     </div>
     <div class="chapters">
     
@@ -201,7 +201,7 @@
     
         <a href="../installation/loggingin.html" title="Logging In" class="chapter done " data-progress="3.5" style="left: 66.66666666666667%;"></a>
     
-        <a href="../usage/authgroups.html" title="Usage" class="chapter  new-chapter" data-progress="4" style="left: 75%;"></a>
+        <a href="../usage/authgroups.html" title="Usage" class="chapter done new-chapter" data-progress="4" style="left: 75%;"></a>
     
         <a href="../contact.html" title="Contact" class="chapter  new-chapter" data-progress="5" style="left: 83.33333333333333%;"></a>
     
@@ -214,12 +214,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_7">
+                    <section class="normal" id="section-gitbook_13">
                     
-                        <h3 id="accessing-the-administration">Accessing the Administration</h3>
-<p>To access the administration page, you just need to access <code>http://your-host/admin</code> in your browser and it
-will redirect you to the login page.</p>
-<p>After being authenticated, you will be redirected back to the administration page.</p>
+                        <h2 id="authorization-groups">Authorization Groups</h2>
+<p>Authorization and brute-force prevention for this system is provided via <a href="https://github.com/cartalyst/sentry" target="_blank">Sentry 2</a>. By default, the login lockout is 5 failed login attempts.</p>
+<h3 id="change-the-default-failed-login-lockout-number">Change the default failed login lockout number</h3>
+<p>To change these settings, edit your <code>/vendor/cartalyst/sentry/src/config/config.php</code> file locally.</p>
 
                     
                     </section>
@@ -229,10 +229,10 @@ will redirect you to the login page.</p>
         </div>
 
         
-        <a href="../installation/cli.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        <a href="../installation/loggingin.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../usage/authgroups.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        <a href="../contact.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
