@@ -36,7 +36,7 @@
     </head>
     <body>
         
-    <div class="book"  data-level="4" data-basepath=".." data-revision="1397934239862">
+    <div class="book"  data-level="4" data-basepath=".." data-revision="1397936001232">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -220,6 +220,82 @@
 <p>Authorization and brute-force prevention for this system is provided via <a href="https://github.com/cartalyst/sentry" target="_blank">Sentry 2</a>. By default, the login lockout is 5 failed login attempts.</p>
 <h3 id="change-the-default-failed-login-lockout-number">Change the default failed login lockout number</h3>
 <p>To change these settings, edit your <code>/vendor/cartalyst/sentry/src/config/config.php</code> file locally.</p>
+<h3 id="default-access-groups">Default Access Groups</h3>
+<p>By default, when you run the <code>php artisan app:install</code> command, three default groups are created:</p>
+<ul>
+<li><strong>Admin</strong>: Can access user management, settings</li>
+<li><strong>Author</strong>: Can create new posts, can not access user management or settings</li>
+<li><strong>User</strong>: Can leave a comment</li>
+</ul>
+<p>A user that is not logged in can read posts but cannot leave comments.</p>
+<p>These groups are initially created in <code>/app/commands/AppCommand.php</code>, a file you shouldn&#39;t need to change unless you have other defaults in mind for your application.</p>
+<pre><code><span class="hljs-comment">// Create the blog author group</span>
+<span class="hljs-variable">$group</span> = Sentry::getGroupProvider()-&gt;create(<span class="hljs-keyword">array</span>(
+    <span class="hljs-string">'name'</span>        =&gt; <span class="hljs-string">'Authors'</span>,
+    <span class="hljs-string">'permissions'</span> =&gt; <span class="hljs-keyword">array</span>(
+    <span class="hljs-string">'superuser'</span>     =&gt; <span class="hljs-number">0</span>,
+    <span class="hljs-string">'admin'</span>         =&gt; <span class="hljs-number">0</span>,
+    <span class="hljs-string">'posts.write'</span>     =&gt; <span class="hljs-number">1</span>,
+    <span class="hljs-string">'posts.read'</span>     =&gt; <span class="hljs-number">1</span>,
+    <span class="hljs-string">'users'</span>         =&gt; <span class="hljs-number">0</span>
+    )
+));
+</code></pre><p>In Sentry, things like <code>posts.write</code> and <code>posts.read</code> are completely arbitrary.</p>
+<p>The developer decides what to call these access masks, and then through the code determines what a user can or cannot access. I mention this because the documentation for this particular feature was, at the time of this writing, somewhat lackluster, and it took a bit of searching to figure out how to use it.</p>
+<p>So for our purposes, we started with <code>admin</code>, <code>posts.write</code>, and <code>posts.read</code> because they are relevant to the sample blog application we&#39;re using in this project, but if you were creating an image gallery, forum, or anything else, you&#39;d want tofigure out what those access masks look like.</p>
+<h2 id="using-access-groups">Using access groups</h2>
+<p>Access permissions in Sentry are stored as a JSON string with the group info. As you&#39;re developing your software, these Sentry methods will come in handy:</p>
+<p>To <strong>create new access groups</strong>, in this example called <code>Super Administrators</code> and <code>Managers</code>:</p>
+<pre><code><span class="hljs-attribute">Sentry</span>::getGroupProvider<span class="hljs-function"><span class="hljs-params">()</span>-&gt;</span>create(array(
+    <span class="hljs-string">'name'</span><span class="hljs-function">        =&gt;</span> <span class="hljs-string">'Super Administrators'</span>,
+    <span class="hljs-string">'permissions'</span><span class="hljs-function"> =&gt;</span> array(
+            <span class="hljs-string">'system'</span><span class="hljs-function"> =&gt;</span> <span class="hljs-number">1</span>,
+    ),
+));
+
+<span class="hljs-attribute">Sentry</span>::getGroupProvider<span class="hljs-function"><span class="hljs-params">()</span>-&gt;</span>create(array(
+    <span class="hljs-string">'name'</span><span class="hljs-function">        =&gt;</span> <span class="hljs-string">'Managers'</span>,
+    <span class="hljs-string">'permissions'</span><span class="hljs-function"> =&gt;</span> array(
+        <span class="hljs-string">'system.products'</span><span class="hljs-function"> =&gt;</span> <span class="hljs-number">1</span>,
+        <span class="hljs-string">'system.store'</span><span class="hljs-function"> =&gt;</span> <span class="hljs-number">1</span>,
+        <span class="hljs-string">'system.profile'</span><span class="hljs-function"> =&gt;</span> <span class="hljs-number">1</span>,
+    ),
+));
+</code></pre><p>Then <strong>assign a user to the group</strong>:</p>
+<pre><code><span class="hljs-attribute">Sentry</span>::getUser<span class="hljs-function"><span class="hljs-params">()</span>-&gt;</span>addGroup<span class="hljs-function"><span class="hljs-params">( Sentry::getGroupProvider()-&gt;findByName(<span class="hljs-string">'Managers'</span>) )</span>;</span>
+</code></pre><p>Check <strong>if a user has a particular access</strong>:</p>
+<pre><code><span class="hljs-keyword">if</span> <span class="hljs-function"><span class="hljs-params">( Sentry::getUser()-&gt;hasAnyAccess([<span class="hljs-string">'system'</span>,<span class="hljs-string">'system.products'</span>]) )</span>
+{
+    // <span class="hljs-title">will</span> <span class="hljs-title">be</span> <span class="hljs-title">able</span> <span class="hljs-title">to</span> <span class="hljs-title">do</span> <span class="hljs-title">a</span> <span class="hljs-title">thing</span>
+}</span>
+</code></pre><p>Check <strong>if a user is Super Administrator</strong> (only this group has the &#39;system&#39; access)</p>
+<pre><code><span class="hljs-keyword">if</span> <span class="hljs-function"><span class="hljs-params">( Sentry::getUser()-&gt;hasAnyAccess([<span class="hljs-string">'system'</span>]) )</span>
+{
+    // <span class="hljs-title">will</span> <span class="hljs-title">be</span> <span class="hljs-title">able</span> <span class="hljs-title">to</span> <span class="hljs-title">do</span> <span class="hljs-title">a</span> <span class="hljs-title">thing</span>
+}</span>
+</code></pre><p>Get <strong>all groups a particular user belongs to</strong>:</p>
+<pre><code><span class="hljs-keyword">try</span>
+{
+    <span class="hljs-comment">// Find the user using the user id</span>
+    <span class="hljs-variable">$user</span> = Sentry::getUserProvider()-&gt;findById(<span class="hljs-number">1</span>);
+
+    <span class="hljs-comment">// Get the user groups</span>
+    <span class="hljs-variable">$groups</span> = <span class="hljs-variable">$user</span>-&gt;getGroups();
+}
+<span class="hljs-keyword">catch</span> (Cartalyst\Sentry\Users\UserNotFoundException <span class="hljs-variable">$e</span>)
+{
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'User was not found.'</span>;
+}
+</code></pre><p>Find the Administrator <strong>group by name</strong>:</p>
+<pre><code><span class="hljs-variable">$admin</span> = <span class="hljs-constant">Sentry::</span>findGroupByName(<span class="hljs-string">'Administrator'</span>);
+
+<span class="hljs-regexp">//</span> <span class="hljs-constant">Check</span> <span class="hljs-keyword">if</span> the user is <span class="hljs-keyword">in</span> the administrator group
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$user</span>-&gt;inGroup(<span class="hljs-variable">$admin</span>)) {
+    <span class="hljs-regexp">//</span> <span class="hljs-constant">User</span> is <span class="hljs-keyword">in</span> <span class="hljs-constant">Administrator</span> group
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-regexp">//</span> <span class="hljs-constant">User</span> is <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> <span class="hljs-constant">Administrator</span> group
+}
+</code></pre><p>(These examples were shamelessly nicked from <a href="http://stackoverflow.com/questions/17012553/how-to-implement-sentry-2-permissions-with-laravel-4" target="_blank">a StackOverflow post</a> that explains it better than the Sentry docs themselves do.)</p>
 
                     
                     </section>
