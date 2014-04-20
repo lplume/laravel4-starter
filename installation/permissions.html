@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Mail | Documentation for Laravel 4 Bootstrap 3 Starter Site</title>
+        <title>Permissions | Documentation for Laravel 4 Bootstrap 3 Starter Site</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="../installation/cli.html" />
+        <link rel="next" href="../installation/database.html" />
         
         
-        <link rel="prev" href="../installation/database.html" />
+        <link rel="prev" href="../installation/composer.html" />
         
 
-        <meta property="og:title" content="Mail | Documentation for Laravel 4 Bootstrap 3 Starter Site">
+        <meta property="og:title" content="Permissions | Documentation for Laravel 4 Bootstrap 3 Starter Site">
         <meta property="og:site_name" content="Documentation for Laravel 4 Bootstrap 3 Starter Site">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -39,7 +39,7 @@
         <link rel="stylesheet" href="../gitbook/style.css">
         
         
-    <div class="book" data-github="snipe/laravel4-starter" data-level="2.4" data-basepath=".." data-revision="1397956865276">
+    <div class="book" data-github="snipe/laravel4-starter" data-level="2.2" data-basepath=".." data-revision="1397956865276">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -75,7 +75,7 @@
             <a href="https://github.com/snipe/laravel4-starter/issues" target="blank">Questions and Issues</a>
         </li>
         <li>
-            <a href="https://github.com/snipe/laravel4-starter/edit/master/installation/mail.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/snipe/laravel4-starter/edit/master/installation/permissions.md" target="blank">Edit and Contribute</a>
         </li>
         <li class="divider"></li>
         
@@ -209,7 +209,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 46.15384615384615%;min-width: 38.46153846153846%;"></div>
+        <div class="inner" style="width: 30.76923076923077%;min-width: 23.076923076923077%;"></div>
     </div>
     <div class="chapters">
     
@@ -223,9 +223,9 @@
     
         <a href="../installation/permissions.html" title="Permissions" class="chapter done " data-progress="2.2" style="left: 30.76923076923077%;"></a>
     
-        <a href="../installation/database.html" title="Database" class="chapter done " data-progress="2.3" style="left: 38.46153846153846%;"></a>
+        <a href="../installation/database.html" title="Database" class="chapter  " data-progress="2.3" style="left: 38.46153846153846%;"></a>
     
-        <a href="../installation/mail.html" title="Mail" class="chapter done " data-progress="2.4" style="left: 46.15384615384615%;"></a>
+        <a href="../installation/mail.html" title="Mail" class="chapter  " data-progress="2.4" style="left: 46.15384615384615%;"></a>
     
         <a href="../installation/cli.html" title="Installer" class="chapter  " data-progress="2.5" style="left: 53.84615384615385%;"></a>
     
@@ -246,12 +246,15 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_10">
+                    <section class="normal" id="section-gitbook_11">
                     
-                        <h2 id="setup-mail-settings">Setup Mail Settings</h2>
-<p>Setup your mail settings by  opening and updating <code>app/config/mail.php</code>.</p>
-<p>This will be used to send emails to your users, when they register and they request a password reset.</p>
-<p>While testing locally, you can set <code>&#39;pretend&#39; =&gt; true,</code> in <code>app/config/mail.php</code> to simulate email being sent.</p>
+                        <h2 id="directory-permissions">Directory Permissions</h2>
+<p>You&#39;ll need to make sure that the <code>app/storage</code> directory is writable by your webserver, since caches and log files get written there. You should use the minimum permissions available for writing, based on how you&#39;ve got your webserver configured.</p>
+<pre><code>chmod -R 755 app/storage
+</code></pre><p>If you still run into a permissions error, you may need to increase the permissions to 775, or twiddle your user/group permissions on your server.</p>
+<pre><code>chmod -R 775 app/storage
+</code></pre><p>You&#39;ll also want to make sure that your installation directory and all files within are owned by something other than root. It&#39;s very common to create a user on your server (like www), add that user to the apache group, and then chown your files to be owned by www, chgrp to the apache group.</p>
+<p>This ensures your files can be executed correctly and cache files can be written to without having to give files owned by root the permissions to write or execute.</p>
 
                     
                     </section>
@@ -261,10 +264,10 @@
         </div>
 
         
-        <a href="../installation/database.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        <a href="../installation/composer.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../installation/cli.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        <a href="../installation/database.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
