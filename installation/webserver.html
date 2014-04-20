@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Mail | Documentation for Laravel 4 Bootstrap 3 Starter Site</title>
+        <title>Web Server | Documentation for Laravel 4 Bootstrap 3 Starter Site</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="../installation/cli.html" />
+        <link rel="next" href="../installation/database.html" />
         
         
-        <link rel="prev" href="../installation/database.html" />
+        <link rel="prev" href="../installation/permissions.html" />
         
 
-        <meta property="og:title" content="Mail | Documentation for Laravel 4 Bootstrap 3 Starter Site">
+        <meta property="og:title" content="Web Server | Documentation for Laravel 4 Bootstrap 3 Starter Site">
         <meta property="og:site_name" content="Documentation for Laravel 4 Bootstrap 3 Starter Site">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -39,7 +39,7 @@
         <link rel="stylesheet" href="../gitbook/style.css">
         
         
-    <div class="book" data-github="snipe/laravel4-starter" data-level="2.5" data-basepath=".." data-revision="1397957598202">
+    <div class="book" data-github="snipe/laravel4-starter" data-level="2.3" data-basepath=".." data-revision="1397957598202">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -75,7 +75,7 @@
             <a href="https://github.com/snipe/laravel4-starter/issues" target="blank">Questions and Issues</a>
         </li>
         <li>
-            <a href="https://github.com/snipe/laravel4-starter/edit/master/installation/mail.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/snipe/laravel4-starter/edit/master/installation/webserver.md" target="blank">Edit and Contribute</a>
         </li>
         <li class="divider"></li>
         
@@ -217,7 +217,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 50%;min-width: 42.857142857142854%;"></div>
+        <div class="inner" style="width: 35.714285714285715%;min-width: 28.571428571428573%;"></div>
     </div>
     <div class="chapters">
     
@@ -233,9 +233,9 @@
     
         <a href="../installation/webserver.html" title="Web Server" class="chapter done " data-progress="2.3" style="left: 35.714285714285715%;"></a>
     
-        <a href="../installation/database.html" title="Database" class="chapter done " data-progress="2.4" style="left: 42.857142857142854%;"></a>
+        <a href="../installation/database.html" title="Database" class="chapter  " data-progress="2.4" style="left: 42.857142857142854%;"></a>
     
-        <a href="../installation/mail.html" title="Mail" class="chapter done " data-progress="2.5" style="left: 50%;"></a>
+        <a href="../installation/mail.html" title="Mail" class="chapter  " data-progress="2.5" style="left: 50%;"></a>
     
         <a href="../installation/cli.html" title="Installer" class="chapter  " data-progress="2.6" style="left: 57.142857142857146%;"></a>
     
@@ -256,13 +256,32 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_10">
+                    <section class="normal" id="section-gitbook_12">
                     
-                        <h2 id="setup-mail-settings">Setup Mail Settings</h2>
-<p>Setup your mail settings by  opening and updating <code>app/config/mail.php</code>.</p>
-<p>This will be used to send emails to your users, when they register and they request a password reset.</p>
-<p>While testing locally, you can set <code>&#39;pretend&#39; =&gt; true,</code> in <code>app/config/mail.php</code> to simulate email being sent.</p>
+                        <h2 id="set-the-correct-document-root-for-your-server">Set the correct document root for your server</h2>
+<p>The document root for the app should be set to the public directory. In a standard Apache virtualhost setup, that might look something like this on a standard linux LAMP stack:</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+    &lt;Directory /var/www/html/public&gt;
+        AllowOverride All
+    &lt;/Directory&gt;
+    DocumentRoot /var/www/html/public
+        ServerName www.example.org
 
+        # Other directives here
+&lt;/VirtualHost&gt;
+</code></pre><p>An OS X virtualhost setup could look more like:</p>
+<pre><code>&lt;VirtualHost&gt;
+    &lt;Directory &quot;/Users/flashingcursor/Sites/snipe-it/public/&quot;&gt;
+        Allow From All
+        AllowOverride All
+        Options +Indexes
+    &lt;/Directory&gt;
+    &lt;VirtualHost *:80&gt;
+            ServerName &quot;snipe-it.dev&quot;
+            DocumentRoot &quot;/Users/flashingcursor/Sites/snipe-it/public&quot;
+    SetEnv LARAVEL_ENV development
+&lt;/VirtualHost&gt;
+</code></pre>
                     
                     </section>
                 
@@ -271,10 +290,10 @@
         </div>
 
         
-        <a href="../installation/database.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        <a href="../installation/permissions.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../installation/cli.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        <a href="../installation/database.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
