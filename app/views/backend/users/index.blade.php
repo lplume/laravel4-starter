@@ -38,11 +38,13 @@ User Management ::
     <tbody>
         @foreach ($users as $user)
         <tr
-        @if ($user->accountStatus()=='suspended')
+        @if ( is_null($user->deleted_at))
+            @if ($user->accountStatus()=='suspended')
                 <?php echo ' class="warning"'; ?>
             @elseif ($user->accountStatus()=='banned')
                 <?php echo ' class="danger"'; ?>
-            @endif>
+            @endif    
+        @endif>
             <td><a href="{{ route('update/user', $user->id) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
             <td>{{{ $user->id }}}</td>
             <td>{{{ $user->first_name }}}</td>
