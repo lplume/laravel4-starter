@@ -77,17 +77,17 @@ packages, like the awesome [Sentry 2](https://github.com/cartalyst/sentry) packa
 
 ### 3) Setup Database
 
-Now that you have the Starter Kit cloned and all the dependencies installed, you need to create a database and update the file `app/config/database.php`.
+Now that you have the Starter Kit cloned and all the dependencies installed, copy the file `app/config/local/database.php.dist` to `app/config/local/database.php` and update the settings to reflect your own database configuration.
 
 -----
 
 ### 4) Setup Mail Settings
 
-Setup your mail settings by  opening and updating `app/config/mail.php`.
+Setup your mail settings by copying `app/config/local/mail.php.dist` to `app/config/local/mail.php` and update it with your own mail settings.
 
 This will be used to send emails to your users, when they register and they request a password reset.
 
-While testing locally, you can set `'pretend' => true,` in `app/config/mail.php` to simulate email being sent.
+While testing locally, you can set `'pretend' => true,` in `app/config/local/mail.php` to simulate email being sent if you don't have easy access to a mail server. (If you need an easy way to actually send test mails, [SendGrid](http://www.sendgrid.com) and [Mandrill](http://mandrillapp.com) both offer free-tiered accounts.
 
 -----
 
@@ -103,7 +103,18 @@ Use the following command to create your default user, user groups and run all t
 
 -----
 
-### 6) Accessing the Administration
+### 6) Set up the debugbar
+
+In dev mode, I use the fabulous [Laravel Debugbar](https://github.com/barryvdh/laravel-debugbar) by @barryvdh. After you've installed/updated composer, you'll need to publish the assets for the debugbar:
+
+	php artisan debugbar:publish
+
+The profiler is enabled by default if you have debug set to true in your app.php. You certainly don't have to use it, but it's pretty handy for troubleshooting queries, seeing how much memory your pages are using, etc.
+
+
+-----
+
+### 7) Accessing the Administration
 
 To access the administration page, you just need to access `http://your-host/admin` in your browser and it
 will redirect you to the login page.
@@ -112,14 +123,14 @@ After being authenticated, you will be redirected back to the administration pag
 
 -----
 
-### 7) Brute-force Lockout Settings
+### 8) Brute-force Lockout Settings
 
 The default Sentry setting is to lockout the user for 15 minutes after 5 failed login attempts. To
 change these settings, edit your `/vendor/cartalyst/sentry/src/config/config.php` file locally.
 
 -----
 
-### 8) Contact
+### 9) Contact
 If you have questions about this project, you can reach me at snipe@snipe.net, or on Twitter at [@snipeyhead](https://twitter.com/snipeyhead).
 
 -----

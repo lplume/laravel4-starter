@@ -44,12 +44,12 @@ User Management ::
                 <?php echo ' class="danger"'; ?>
             @endif>
             <td><a href="{{ route('update/user', $user->id) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
-            <td>{{ $user->id }}</td>
-            <td>{{ $user->first_name }}</td>
-            <td>{{ $user->last_name }}</td>
-            <td>{{ $user->email }}</td>
+            <td>{{{ $user->id }}}</td>
+            <td>{{{ $user->first_name }}}</td>
+            <td>{{{ $user->last_name }}}</td>
+            <td>{{{ $user->email }}}</td>
             <td>@lang('general.' . ($user->isActivated() ? 'yes' : 'no'))</td>
-            <td>{{ $user->created_at->diffForHumans() }}</td>
+            <td>{{{ $user->created_at->diffForHumans() }}}</td>
             <td>
                 @if ( ! is_null($user->deleted_at))
                 <a href="{{ route('restore/user', $user->id) }}"><span class="glyphicon glyphicon-ok"></span></a>
@@ -82,5 +82,5 @@ User Management ::
     </div>
   </div>
 </div>
-<script>$(function(){$('body').on('hidden.bs.modal', '.modal', function () {$(this).removeData('bs.modal');});});</script>
+<script>$(function () {$('body').on('hidden.bs.modal', '.modal', function () {$(this).removeData('bs.modal');});});</script>
 @stop

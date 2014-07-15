@@ -35,9 +35,9 @@
         @foreach ($groups as $group)
         <tr>
             <td><a href="{{ route('update/group', $group->id) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
-            <td>{{ $group->name }}</td>
-            <td>{{ $group->users()->count() }}</td>
-            <td>{{ $group->created_at->diffForHumans() }}</td>
+            <td>{{{ $group->name }}}</td>
+            <td>{{{ $group->users()->count() }}}</td>
+            <td>{{{ $group->created_at->diffForHumans() }}}</td>
             <td>
                 <td><a href="{{ route('confirm-delete/group', $group->id) }}" data-toggle="modal" data-target="#delete_confirm"><span class="glyphicon glyphicon-trash"></span></a></td>
             </td>
@@ -61,5 +61,5 @@
     </div>
   </div>
 </div>
-<script>$(function(){$('body').on('hidden.bs.modal', '.modal', function () {$(this).removeData('bs.modal');});});</script>
+<script>$(function () {$('body').on('hidden.bs.modal', '.modal', function () {$(this).removeData('bs.modal');});});</script>
 @stop

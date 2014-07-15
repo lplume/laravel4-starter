@@ -2,7 +2,7 @@
 
 class Post extends Elegant
 {
-	protected $rules = array(
+    protected $rules = array(
             'title'   => 'required|min:3',
             'slug'   => "unique:posts",
             'content' => 'required|min:3',
@@ -30,7 +30,7 @@ class Post extends Elegant
      */
     public function content()
     {
-        return nl2br($this->content);
+        return $this->content;
     }
 
     /**
@@ -74,6 +74,15 @@ class Post extends Elegant
         # and return that url here.
 
         return 'http://lorempixel.com/130/90/business/';
+    }
+
+
+     public function img()
+    {
+        # you should save the image url on the database
+        # and return that url here.
+
+        return 'http://lorempixel.com/600/300/business/';
     }
 
 }
