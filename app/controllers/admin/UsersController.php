@@ -290,6 +290,7 @@ class UsersController extends AdminController
     public function getModalDelete($id = null)
     {
         $model = 'users';
+        $action = 'delete';
         $confirm_route = $error = null;
         try {
             // Get user information
@@ -300,21 +301,21 @@ class UsersController extends AdminController
                 // Prepare the error message
                 $error = Lang::get('admin/users/message.error.delete');
 
-                return View::make('backend/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
+                return View::make('backend/layouts/modal_confirmation', compact('action','error', 'model', 'confirm_route'));
             }
 
             // Do we have permission to delete this user?
             if ($user->isSuperUser() and ! Sentry::getUser()->isSuperUser()) {
                 $error = Lang::get('admin/users/message.insufficient_permissions', compact('id' ));
-                return View::make('backend/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
+                return View::make('backend/layouts/modal_confirmation', compact('action','error', 'model', 'confirm_route'));
             }
         } catch (UserNotFoundException $e) {
             // Prepare the error message
             $error = Lang::get('admin/users/message.user_not_found', compact('id' ));
-            return View::make('backend/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
+            return View::make('backend/layouts/modal_confirmation', compact('action','error', 'model', 'confirm_route'));
         }
         $confirm_route =  URL::action('delete/user', array('id'=>$user->id));
-        return View::make('backend/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
+        return View::make('backend/layouts/modal_confirmation', compact('action','error', 'model', 'confirm_route'));
     }
 
     /**
@@ -388,6 +389,30 @@ class UsersController extends AdminController
             // Redirect to the user management page
             return Redirect::route('users')->with('error', $error);
         }
+    }
+
+    /**
+     * Restore confirm.
+     *
+     * @param  int      $id
+     * @return View
+     */
+    public function getModalRestore($id = null)
+    {
+        $model = 'users';
+        $action = 'restore';
+        $confirm_route = $error = null;
+        try {
+            // Get user information
+            $user = Sentry::getUserProvider()->createModel()->withTrashed()->find($id);
+
+        } catch (UserNotFoundException $e) {
+            // Prepare the error message
+            $error = Lang::get('admin/users/message.user_not_found', compact('id' ));
+            return View::make('backend/layouts/modal_confirmation', compact('action','error', 'model', 'confirm_route'));
+        }
+        $confirm_route =  URL::action('restore/user', array('id'=>$user->id));
+        return View::make('backend/layouts/modal_confirmation', compact('action','error', 'model', 'confirm_route'));
     }
 
 }

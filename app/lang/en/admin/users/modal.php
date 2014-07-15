@@ -5,10 +5,17 @@
 *
 */
 return array(
-
-    'body'			=> 'Are you sure to delete this user? This operation is irreversible.',
-    'cancel'		=> 'Cancel',
-    'confirm'		=> 'Delete',
-    'title'         => 'Delete User',
+	'delete' => array(
+        'body'            => 'Are you sure to delete this user?',
+        'cancel'        => 'Cancel',
+        'confirm'        => 'Delete',
+        'title'         => 'Delete User'
+    ),
+    'restore' => array(
+        'body'            => 'Are you sure to restore this user?',
+        'cancel'        => 'Cancel',
+        'confirm'        => 'Restore',
+        'title'         => 'Restore User'
+    )
 
 );
