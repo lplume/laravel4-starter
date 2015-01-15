@@ -18,6 +18,7 @@ class PostsController extends AdminController
 
       public function __construct(Post $post)
       {
+          parent::__construct();
           $this->post = $post;
       }
 
