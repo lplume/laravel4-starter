@@ -30,8 +30,8 @@ Route::group(array('prefix' => 'admin'), function () {
         Route::get('{userId}/edit', array('as' => 'update/user', 'uses' => 'Controllers\Admin\UsersController@getEdit'));
         Route::post('{userId}/edit', 'Controllers\Admin\UsersController@postEdit');
         Route::get('{userId}/delete', array('as' => 'delete/user', 'uses' => 'Controllers\Admin\UsersController@getDelete'));
-        Route::get('{userId}/confirm-delete', array('as' => 'confirm-delete/user', 'uses' => 'Controllers\Admin\UsersController@getModalDelete'));
         Route::get('{userId}/restore', array('as' => 'restore/user', 'uses' => 'Controllers\Admin\UsersController@getRestore'));
+        Route::get('{userId}/unsuspend', array('as' => 'unsuspend/user', 'uses' => 'Controllers\Admin\UsersController@getUnsuspend'));
     });
 
     # Group Management
