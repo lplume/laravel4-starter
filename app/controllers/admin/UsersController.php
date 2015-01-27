@@ -22,11 +22,11 @@ class UsersController extends AdminController
      * @var array
      */
     protected $validationRules = array(
-        'first_name'       => 'required|min:3',
-        'last_name'        => 'required|min:3',
+        'first_name'       => 'required|alpha_space|min:2',
+        'last_name'        => 'required|alpha_space|min:2',
         'email'            => 'required|email|unique:users,email',
-        'password'         => 'required|between:10,32',
-        'password_confirm' => 'required|between:10,32|same:password',
+        'password'         => 'required|min:10',
+        'password_confirm' => 'required|min:10|same:password',
     );
 
     /**
@@ -389,5 +389,51 @@ class UsersController extends AdminController
             return Redirect::route('users')->with('error', $error);
         }
     }
+
+    /**
+     * Unsuspend the given user.
+     *
+     * @param  int      $id
+     * @return Redirect
+     */
+    public function getUnsuspend($id = null)
+    {
+        try {
+            // Get user information
+            $user = Sentry::getUserProvider()->findById($id);
+
+            // Check if we are not trying to unsuspend ourselves
+            if ($user->id === Sentry::getId()) {
+                // Prepare the error message
+                $error = Lang::get('admin/users/message.error.unsuspend');
+
+                // Redirect to the user management page
+                return Redirect::route('users')->with('error', $error);
+            }
+
+            // Do we have permission to unsuspend this user?
+            if ($user->isSuperUser() and ! Sentry::getUser()->isSuperUser()) {
+                // Redirect to the user management page
+                return Redirect::route('users')->with('error', 'Insufficient permissions!');
+            }
+
+            // Unsuspend the user
+            $throttle = Sentry::findThrottlerByUserId($id);
+            $throttle->unsuspend();
+
+            // Prepare the success message
+            $success = Lang::get('admin/users/message.success.unsuspend');
+
+            // Redirect to the user management page
+            return Redirect::route('users')->with('success', $success);
+        } catch (UserNotFoundException $e) {
+            // Prepare the error message
+            $error = Lang::get('admin/users/message.user_not_found', compact('id' ));
+
+            // Redirect to the user management page
+            return Redirect::route('users')->with('error', $error);
+        }
+    }
+
 
 }
